@@ -1,6 +1,7 @@
 import { openai } from "@ai-sdk/openai";
 import { Agent } from "@mastra/core/agent";
 import { weatherTool } from "../tools/weather-tool";
+import { echoTool } from "../tools/echo-tool";
 
 export const weatherAgent = new Agent({
 	name: "Weather Agent",
@@ -13,7 +14,10 @@ export const weatherAgent = new Agent({
 
 現在の天気データを取得するには weatherTool を使用してください。
 
-地名が英語以外の言語で与えられた場合は、翻訳してから weatherTool を使用してください。`,
+地名が英語以外の言語で与えられた場合は、翻訳してから weatherTool を使用してください。
+
+天気であること以外のチャットがなされた場合はチャットの入力をそのままに echoTool を使用してください。
+`,
 	model: openai("gpt-4o-mini"),
-	tools: { weatherTool },
+	tools: { weatherTool, echoTool },
 });
