@@ -20,6 +20,7 @@ out/
 .mastra
 output.txt
 *.db
+.turbo
 
 # Logs
 logs
