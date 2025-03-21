@@ -1,5 +1,6 @@
 import { openai } from "@ai-sdk/openai";
 import { Agent } from "@mastra/core/agent";
+import { weatherTool } from "../tools";
 
 export const weatherAgent = new Agent({
 	name: "Weather Agent",
@@ -12,6 +13,9 @@ export const weatherAgent = new Agent({
       - 複数の部分がある場所（例：「ニューヨーク、NY」）を提供する場合は、最も関連性の高い部分（例：「ニューヨーク」）を使用してください
       - 湿度、風の状態、降水量などの関連情報を含めてください
       - 回答は簡潔でありながら有益にしてください
-`,
+      
+      天気を取得する際は weatherTool を使用してください。
+      `,
 	model: openai("gpt-4o"),
+	tools: { weatherTool },
 });
