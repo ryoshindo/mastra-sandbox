@@ -1,11 +1,12 @@
 import { Mastra } from "@mastra/core";
-import { weatherAgent } from "./agents";
-import { createLogger } from "@mastra/core/logger";
+import { PgVector } from "@mastra/pg";
+
+import { researchAgent } from "./agents/researchAgent";
+
+// Initialize Mastra instance
+const pgVector = new PgVector(process.env.POSTGRES_CONNECTION_STRING as string);
 
 export const mastra = new Mastra({
-	agents: { weatherAgent },
-	logger: createLogger({
-		name: "Mastra",
-		level: "info",
-	}),
+	agents: { researchAgent },
+	vectors: { pgVector },
 });

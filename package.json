@@ -2,6 +2,7 @@
   "name": "mastra-sandbox",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "run-p dev:*",
     "dev:next": "next dev --turbopack",
@@ -9,7 +10,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "claude:commit": "claude \".claude/docs/commit.md に従ってタスクを実行します\" --allowedTools \"Bash(git diff:*), Bash(git add:*), Bash(git commit:*)\""
+    "claude:commit": "claude \"$(cat .claude/docs/commit.md) に従ってタスクを実行します\" --allowedTools \"Bash(git diff:*), Bash(git add:*), Bash(git commit:*)\"",
+    "run:rag": "pnpm tsx --env-file .env.development src/store.ts",
+    "run:query": "pnpm tsx --env-file .env.development src/index.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.3.0",
